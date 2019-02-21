@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no,
+		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+	<title>Sahayak</title>
+
+	<style>
+		@import 'ui/css/evothings-app.css';
+	</style>
+
+	<script>
+	// Redirect console.log to Evothings Workbench.
+	if (window.hyper && window.hyper.log) { console.log = hyper.log }
+	</script>
+
+	<script src="cordova.js"></script>
+	<script src="libs/jquery/jquery.js"></script>
+	<script src="libs/evothings/evothings.js"></script>
+	<script src="libs/evothings/ui/ui.js"></script>
+	<script src="libs/evothings/eddystone/eddystone.js"></script>
+	<script src="app.js"></script>
+
+</head>
+
+<body>
+<header style="background-color: #4fc3f7">Sahayak</header>
+	<h1>BLE Bus Scanner</h1>
+<div id="formd">
+	<label for="from"><b>From:</b></label>
+    <input type="text" placeholder="Enter Source" id="from" required>
+    <br>
+	<label for="to"><b>To:</b></label>
+    <input type="text" placeholder="Enter Destination" id="to" required>
+    <button style="background-color: #0093c4" type="button" class="submitbtn" onclick="AppStart()">Submit</button>
+</div>
+	
+<div id="present">
+	<button style="background-color: #0093c4" type="button" class="editbtn" onclick="editInfo()">Edit</button>
+	<p id="message">No Buses nearby</p>
+	<ul id="found-beacons" class="dynamic"></ul>
+</div>
+
+<script>
+	document.getElementById("present").style.display = "none";
+	function AppStart() {
+		document.getElementById("formd").style.display = "none";
+		document.getElementById("present").style.display = "block";
+		blogic();
+	}
+	function editInfo() {
+		document.getElementById("present").style.display = "none";
+		document.getElementById("formd").style.display = "block";
+		document.getElementById("from").value = '';
+		document.getElementById("to").value = '';
+	}
+</script>
+</body>	
+
+</html>
